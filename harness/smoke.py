@@ -13,7 +13,7 @@ def find(text,timeout=25):
   except (subprocess.SubprocessError,ET.ParseError):
    time.sleep(2);continue
   for n in root.iter('node'):
-   if n.get('text')==text or n.get('content-desc')==text:return n
+   if any(' '.join((n.get(key) or '').split()).casefold()==' '.join(text.split()).casefold() for key in ['text','content-desc']):return n
   time.sleep(1)
  raise AssertionError('Accessible control not found: '+text)
 def tap(text):
