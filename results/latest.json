@@ -1,5 +1,5 @@
 {
-  "runId": "39159529095",
+  "runId": "39159945416",
   "apkSha256": "07947fbbba082850cd4a294c50b02916a5ec847ca834736f86c2c80f4af9d2d3",
   "version": "0.33.0",
   "apiLevel": 35,
@@ -18,17 +18,35 @@
     },
     {
       "name": "Navigate to My crews",
-      "status": "failed",
-      "message": "Accessible control not found: Shared travel plans"
+      "status": "passed"
+    },
+    {
+      "name": "Navigate to Estimate",
+      "status": "passed"
+    },
+    {
+      "name": "Navigate to Explore",
+      "status": "passed"
+    },
+    {
+      "name": "Cold relaunch",
+      "status": "passed"
+    },
+    {
+      "name": "No Android runtime crash",
+      "status": "passed"
     }
   ],
   "screenshots": [
     "01-explore.png",
     "02-profile.png",
-    "failure.png"
+    "03-crews.png",
+    "04-estimate.png",
+    "05-return.png",
+    "01-explore.png"
   ],
   "limitations": [
     "Guest smoke tests only. Login, crew approval, chat, identity and purchases are not exercised."
   ],
-  "status": "failed"
+  "status": "passed"
 }
