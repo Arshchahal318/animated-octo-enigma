@@ -4,7 +4,8 @@ def call(method,url,data=None):
  r=urllib.request.Request(url,method=method,headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},data=None if data is None else json.dumps(data).encode())
  return json.load(urllib.request.urlopen(r,timeout=30))
 for p in sorted(pathlib.Path('test-results').glob('*'),key=lambda p:p.name=='latest.json'):
- if p.suffix not in ['.png','.json']:continue
+ if p.name != 'latest.json' and not __import__('re').fullmatch(r'[a-zA-Z0-9-]{1,60}\.png',p.name):continue
+ if not p.is_file() or p.is_symlink() or p.stat().st_size>5*1024*1024:raise ValueError('Invalid evidence file')
  url=base+p.name;payload={'message':'Publish APK smoke test evidence','content':base64.b64encode(p.read_bytes()).decode()}
  try:payload['sha']=call('GET',url)['sha']
  except urllib.error.HTTPError as e:
