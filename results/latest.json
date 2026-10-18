@@ -1,5 +1,5 @@
 {
-  "runId": "39159469861",
+  "runId": "39159529095",
   "apkSha256": "07947fbbba082850cd4a294c50b02916a5ec847ca834736f86c2c80f4af9d2d3",
   "version": "0.33.0",
   "apiLevel": 35,
@@ -10,11 +10,21 @@
     },
     {
       "name": "Launch and render shared interface",
+      "status": "passed"
+    },
+    {
+      "name": "Navigate to Profile",
+      "status": "passed"
+    },
+    {
+      "name": "Navigate to My crews",
       "status": "failed",
-      "message": "Command '['adb', 'shell', 'cat', '/sdcard/qa.xml']' returned non-zero exit status 1."
+      "message": "Accessible control not found: Shared travel plans"
     }
   ],
   "screenshots": [
+    "01-explore.png",
+    "02-profile.png",
     "failure.png"
   ],
   "limitations": [
