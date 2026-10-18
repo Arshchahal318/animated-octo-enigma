@@ -1,0 +1,24 @@
+{
+  "runId": "39159358103",
+  "apkSha256": "07947fbbba082850cd4a294c50b02916a5ec847ca834736f86c2c80f4af9d2d3",
+  "version": "0.33.0",
+  "apiLevel": 35,
+  "checks": [
+    {
+      "name": "APK installation",
+      "status": "passed"
+    },
+    {
+      "name": "Launch and render shared interface",
+      "status": "failed",
+      "message": "Command '['adb', 'shell', 'cat', '/sdcard/qa.xml']' returned non-zero exit status 1."
+    }
+  ],
+  "screenshots": [
+    "failure.png"
+  ],
+  "limitations": [
+    "Guest smoke tests only. Login, crew approval, chat, identity and purchases are not exercised."
+  ],
+  "status": "failed"
+}
