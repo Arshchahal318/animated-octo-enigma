@@ -1,0 +1,100 @@
+{
+  "apkVersion": "0.33.0",
+  "testedAt": "2026-10-18T20:23:37.917Z",
+  "transport": "Live shared backend through website bridge plus direct Android API contract",
+  "checks": [
+    {
+      "name": "Website bridge QA host login and HttpOnly session",
+      "status": "passed"
+    },
+    {
+      "name": "Android API contract QA traveller login",
+      "status": "passed"
+    },
+    {
+      "name": "Both account billing and identity status",
+      "status": "passed"
+    },
+    {
+      "name": "Create labelled QA arrival crew through website",
+      "status": "passed"
+    },
+    {
+      "name": "Other account discovers same crew",
+      "status": "passed"
+    },
+    {
+      "name": "Non-member cannot read private chat",
+      "status": "passed"
+    },
+    {
+      "name": "Join request stays pending before approval",
+      "status": "passed"
+    },
+    {
+      "name": "Host sees request and approves traveller",
+      "status": "passed"
+    },
+    {
+      "name": "Two-way chat synchronizes across transports",
+      "status": "passed"
+    },
+    {
+      "name": "Both accounts see crew in My crews",
+      "status": "passed"
+    },
+    {
+      "name": "Traveller cannot close host crew",
+      "status": "passed"
+    },
+    {
+      "name": "Leaving revokes private chat access",
+      "status": "passed"
+    },
+    {
+      "name": "Host closes crew and search excludes it",
+      "status": "passed"
+    },
+    {
+      "name": "Closed crew rejects additional messages",
+      "status": "passed"
+    },
+    {
+      "name": "Identity requires explicit consent",
+      "status": "passed"
+    },
+    {
+      "name": "Ordinary users cannot access admin dashboard",
+      "status": "passed"
+    },
+    {
+      "name": "Logout revokes session use",
+      "status": "passed"
+    },
+    {
+      "name": "Active QA access cannot open duplicate subscription checkout",
+      "status": "passed"
+    },
+    {
+      "name": "Account without subscription cannot open another customer portal",
+      "status": "passed"
+    },
+    {
+      "name": "Unsigned billing webhook is rejected",
+      "status": "passed"
+    },
+    {
+      "name": "Identity provider starts a sandbox document-and-selfie session",
+      "status": "passed"
+    }
+  ],
+  "limitations": [
+    "These are live API/bridge tests, not signed-in Android UI automation.",
+    "No real payment or document/selfie verification is completed."
+  ],
+  "cleanup": "QA crew closed during run or session ended",
+  "status": "passed",
+  "identityHandoff": "Sandbox hosted session returned; no document or selfie submitted.",
+  "apkSha256": "07947fbbba082850cd4a294c50b02916a5ec847ca834736f86c2c80f4af9d2d3",
+  "nativeUiStatus": "Not run: encrypted GitHub QA secrets are required."
+}
