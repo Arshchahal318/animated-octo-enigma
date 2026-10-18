@@ -1,7 +1,7 @@
 import urllib.request,json,hashlib,os,pathlib
 origin='https://arrivetogether.info'
 # Release metadata is derived from the public immutable APK response.
-with urllib.request.urlopen(origin+'/download/ArriveTogether.apk',timeout=90) as r:
+with urllib.request.urlopen(urllib.request.Request(origin+'/download/ArriveTogether.apk',headers={'User-Agent':'Mozilla/5.0 (compatible; ArriveTogether-QA/1.0)'}),timeout=90) as r:
  data=r.read(60*1024*1024+1)
 assert len(data)<60*1024*1024 and data[:2]==b'PK','Invalid APK download'
 sha=hashlib.sha256(data).hexdigest();pathlib.Path('app.apk').write_bytes(data)
