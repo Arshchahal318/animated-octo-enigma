@@ -9,7 +9,10 @@ def nodes():
 def find(text,timeout=25):
  end=time.time()+timeout
  while time.time()<end:
-  for n in nodes().iter('node'):
+  try:root=nodes()
+  except (subprocess.SubprocessError,ET.ParseError):
+   time.sleep(2);continue
+  for n in root.iter('node'):
    if n.get('text')==text or n.get('content-desc')==text:return n
   time.sleep(1)
  raise AssertionError('Accessible control not found: '+text)
@@ -18,10 +21,15 @@ def tap(text):
  adb('shell','input','tap',str((coords[0]+coords[2])//2),str((coords[1]+coords[3])//2));time.sleep(2)
 def check(name,fn):
  try:fn();report['checks'].append({'name':name,'status':'passed'})
- except Exception as e:report['checks'].append({'name':name,'status':'failed','message':str(e)[:180]});screen('failure');raise
+ except Exception as e:
+  report['checks'].append({'name':name,'status':'failed','message':str(e)[:180]});screen('failure')
+  (out/'device-log.txt').write_bytes(adb('logcat','-d','-t','500'))
+  (out/'activity.txt').write_bytes(adb('shell','dumpsys','activity','activities'))
+  raise
 completed=False
 try:
  check('APK installation',lambda:adb('install','-r','app.apk'))
+ adb('shell','input','keyevent','KEYCODE_WAKEUP');adb('shell','wm','dismiss-keyguard');adb('shell','svc','power','stayon','true')
  adb('logcat','-c')
  def launch():
   adb('shell','am','start','-W','-n','com.arrivetogether.app/.MainActivity');find('Explore',45);screen('01-explore')
