@@ -19,6 +19,7 @@ def tap(text):
 def check(name,fn):
  try:fn();report['checks'].append({'name':name,'status':'passed'})
  except Exception as e:report['checks'].append({'name':name,'status':'failed','message':str(e)[:180]});screen('failure');raise
+completed=False
 try:
  check('APK installation',lambda:adb('install','-r','app.apk'))
  adb('logcat','-c')
@@ -26,13 +27,14 @@ try:
   adb('shell','am','start','-W','-n','com.arrivetogether.app/.MainActivity');find('Explore',45);screen('01-explore')
  check('Launch and render shared interface',launch)
  for label,name in [('Profile','02-profile'),('My crews','03-crews'),('Estimate','04-estimate'),('Explore','05-return')]:
-  check('Navigate to '+label,lambda label=label,name=name:(tap(label),screen(name)))
+  check('Navigate to '+label,lambda label=label,name=name:(tap(label),find({'Profile':'Sign in & explore Canada','My crews':'Shared travel plans','Estimate':'Fare estimator','Explore':'Same airport. Same way home.'}[label]),screen(name)))
  def relaunch():
   adb('shell','am','force-stop','com.arrivetogether.app');launch()
  check('Cold relaunch',relaunch)
  def crashes():
   log=adb('logcat','-d','-s','AndroidRuntime:E').decode(errors='replace');assert 'FATAL EXCEPTION' not in log,'Android runtime crash detected'
  check('No Android runtime crash',crashes)
+ completed=True
 finally:
- report['status']='passed' if report['checks'] and all(c['status']=='passed' for c in report['checks']) else 'failed'
+ report['status']='passed' if completed and report['checks'] and all(c['status']=='passed' for c in report['checks']) else 'failed'
  (out/'latest.json').write_text(json.dumps(report,indent=2))
