@@ -1,6 +1,6 @@
 {
-  "apkVersion": "0.33.0",
-  "testedAt": "2026-10-18T20:23:37.917Z",
+  "apkVersion": "0.34.0",
+  "testedAt": "2026-10-25T23:10:28.723Z",
   "transport": "Live shared backend through website bridge plus direct Android API contract",
   "checks": [
     {
@@ -60,7 +60,7 @@
       "status": "passed"
     },
     {
-      "name": "Identity requires explicit consent",
+      "name": "Identity is deferred for free launch",
       "status": "passed"
     },
     {
@@ -70,22 +70,6 @@
     {
       "name": "Logout revokes session use",
       "status": "passed"
-    },
-    {
-      "name": "Active QA access cannot open duplicate subscription checkout",
-      "status": "passed"
-    },
-    {
-      "name": "Account without subscription cannot open another customer portal",
-      "status": "passed"
-    },
-    {
-      "name": "Unsigned billing webhook is rejected",
-      "status": "passed"
-    },
-    {
-      "name": "Identity provider starts a sandbox document-and-selfie session",
-      "status": "passed"
     }
   ],
   "limitations": [
@@ -94,7 +78,6 @@
   ],
   "cleanup": "QA crew closed during run or session ended",
   "status": "passed",
-  "identityHandoff": "Sandbox hosted session returned; no document or selfie submitted.",
-  "apkSha256": "07947fbbba082850cd4a294c50b02916a5ec847ca834736f86c2c80f4af9d2d3",
-  "nativeUiStatus": "Not run: encrypted GitHub QA secrets are required."
+  "apkSha256": "cee5813db90805ceecd7b679ea0d98ca2737a89254445a19fe0501759fb33ecd",
+  "launchMode": "free"
 }
